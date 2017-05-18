@@ -16,7 +16,6 @@ struct IconicFilters {
 
     static func unicodeCase(value: Any?) throws -> Any? {
         guard let string = value as? String else {
-            print(value)
             throw IconicFilters.Error.invalidInputType
         }
         return unicodeCase(for: string)

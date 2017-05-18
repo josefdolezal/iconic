@@ -20,12 +20,16 @@ let main = command { (path: Path) in
     
     let context: [String: Any] = [
         "icons": fontParser.icons,
-        "enumName": "FontAwesomeIcon"
+        "enumName": "FontAwesomeIcon",
+        "fontName": "FontAwesome",
+        "fontPath": "/Users/josef/Developer/Git/Projects/Iconic/FontAwesome.otf"
     ]
 
     let iconsEnum = try environment.renderTemplate(name: "iconic-default.stencil", context: context)
+    let catalog = try environment.renderTemplate(name: "catalog.stencil", context: context)
 
-    print(iconsEnum)
+    // print(iconsEnum)
+    print(catalog)
 }
 
 main.run()

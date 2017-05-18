@@ -10,6 +10,7 @@ import Foundation
 import CoreText
 
 enum IconsFontFileParserError: Error {
+    case cannotReadFont(URL)
     case scalarUndefined(Int)
     case glyphNotAccessible(UniChar)
     case unknownName(CGGlyph)
@@ -27,13 +28,12 @@ public final class IconsFontFileParser: IconParsing {
             let descriptors = CTFontManagerCreateFontDescriptorsFromURL(url as CFURL),
             let descriptor = (descriptors as? [CTFontDescriptor])?.first
         else {
-            print("failed to get font description from \(url.absoluteString)")
-            return
+            throw IconsFontFileParserError.cannotReadFont(url)
         }
 
         let ctFont = CTFontCreateWithFontDescriptorAndOptions(descriptor, 0.0, nil, [.preventAutoActivation])
 
-        icons = try extractGlyphs(fromFont: ctFont)
+        icons = try extractGlyphs(fromFont: ctFont).sorted() { $0.name.compare($1.name) == .orderedAscending }
     }
 
     private func extractGlyphs(fromFont font: CTFont) throws -> [Icon] {
