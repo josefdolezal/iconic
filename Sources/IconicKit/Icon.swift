@@ -9,5 +9,5 @@
 public struct Icon {
     let name: String
 
-    let hexCode: String
+    let unicode: String
 }

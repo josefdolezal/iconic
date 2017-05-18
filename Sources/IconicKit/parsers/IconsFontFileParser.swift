@@ -71,7 +71,7 @@ public final class IconsFontFileParser: IconParsing {
                 throw IconsFontFileParserError.unknownName(glyphs[0])
             }
 
-            return Icon(name: name as String, hexCode: String(format: "%X", unicode))
+            return Icon(name: name as String, unicode: String(format: "%X", unicode))
         }
     }
 }

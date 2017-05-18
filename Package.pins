@@ -24,6 +24,12 @@
       "reason": null,
       "repositoryURL": "https://github.com/kylef/Stencil.git",
       "version": "0.9.0"
+    },
+    {
+      "package": "StencilSwiftKit",
+      "reason": null,
+      "repositoryURL": "https://github.com/SwiftGen/StencilSwiftKit.git",
+      "version": "1.0.2"
     }
   ],
   "version": 1

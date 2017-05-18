@@ -28,7 +28,7 @@ public final class IconsJSONFileParser: IconParsing {
         }
 
         icons = dictionary.map({ name, hexCode in
-            return Icon(name: name, hexCode: hexCode)
+            return Icon(name: name, unicode: hexCode)
         })
     }
 }

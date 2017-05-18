@@ -10,15 +10,20 @@ import Commander
 import PathKit
 import IconicKit
 import Stencil
+import StencilSwiftKit
 
 let main = command { (path: Path) in
     let fontParser = IconsFontFileParser()
-    let environment = Environment(loader: FileSystemLoader(paths: ["Sources/Iconic/templates"]))
+    let environment = Environment(iconicTemplatePaths: ["./templates"])
 
     try fontParser.parseFile(atUrl: path.url)
+    
+    let context: [String: Any] = [
+        "icons": fontParser.icons,
+        "enumName": "FontAwesomeIcon"
+    ]
 
-    let context = ["icons": fontParser.icons]
-    let iconsEnum = try environment.renderTemplate(name: "default.stencil", context: context)
+    let iconsEnum = try environment.renderTemplate(name: "iconic-default.stencil", context: context)
 
     print(iconsEnum)
 }

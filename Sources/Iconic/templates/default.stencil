@@ -1,7 +1,0 @@
-
-
-enum Fasome: String {
-{% for icon in icons %}
-    case {{ icon.name }} = "{{ icon.hexCode }}"
-{% endfor %}
-}
