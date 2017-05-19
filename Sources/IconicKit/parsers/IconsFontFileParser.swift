@@ -33,6 +33,7 @@ public final class IconsFontFileParser: IconParsing {
 
         let ctFont = CTFontCreateWithFontDescriptorAndOptions(descriptor, 0.0, nil, [.preventAutoActivation])
 
+        familyName = CTFontCopyFamilyName(ctFont) as String
         icons = try extractGlyphs(fromFont: ctFont).sorted() { $0.name.compare($1.name) == .orderedAscending }
     }
 

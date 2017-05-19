@@ -47,7 +47,8 @@ let main = command(outputOption, fontArgument) { output, font in
         "icons": fontParser.icons,
         "enumName": enumName,
         "fontName": font.fontName,
-        "fontPath": catalogFontOutput.string
+        "fontPath": catalogFontOutput.string,
+        "familyName": fontParser.familyName ?? "unknown"
     ]
 
     let iconsEnum = try environment.renderTemplate(name: "iconic-default.stencil", context: context)
