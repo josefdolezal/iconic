@@ -22,15 +22,10 @@ let outputOption = Option<Path>("output", "./", flag: "o", description: "The pat
     return path
 }
 
-let fontArgument = Argument<Path>("FONT FILE", description: "Font to parse.") { path in
-    guard path.isFile else {
-        throw ArgumentError.invalidType(value: path.description, type: "file", argument: nil)
-    }
+let fontArgument = Argument<IconFont>("FONT FILE", description: "Font to parse.")
 
-    return path
-}
-
-let main = command(outputOption, fontArgument) { output, fontPath in
+let main = command(outputOption, fontArgument) { output, font in
+    let fontPath = font.path
     let fontOutput = output + Path("FontAwesomeIcon.swift")
     let catalogOutput = output + Path("FontAwesomeCatalog.html")
     let catalogFontOutput = output + fontPath.lastComponent
