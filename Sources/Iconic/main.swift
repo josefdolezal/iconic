@@ -37,6 +37,8 @@ let main = command(outputOption, fontArgument) { output, font in
     let catalogOutput = output + Path("\(enumName)Catalog.html")
     // Path of font used in html catalog
     let catalogFontOutput = output + fontPath.lastComponent
+    // Common swift files
+    let commonFilesOutput = output + Path("IconicCommon")
 
     let fontParser = IconsFontFileParser()
     let environment = Environment(iconicTemplatePaths: ["./templates"])
@@ -59,6 +61,7 @@ let main = command(outputOption, fontArgument) { output, font in
     try fontOutput.clearBeforeAction { try $0.write(iconsEnum) }
     try catalogOutput.clearBeforeAction { try $0.write(catalog) }
     try catalogFontOutput.clearBeforeAction { try fontPath.copy($0) }
+    try commonFilesOutput.clearBeforeAction { try Path("templates/IconicCommon").copy($0) }
 }
 
 main.run()
