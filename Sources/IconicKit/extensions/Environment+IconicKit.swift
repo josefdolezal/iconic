@@ -10,6 +10,7 @@ import PathKit
 import Stencil
 import StencilSwiftKit
 
+
 public extension Environment {
     init(iconicTemplatePaths paths: [Path]) {
         let ext = Extension()

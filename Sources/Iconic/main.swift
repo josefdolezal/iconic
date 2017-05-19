@@ -25,9 +25,10 @@ let outputOption = Option<Path>("output", "./", flag: "o", description: "The pat
 let fontArgument = Argument<IconFont>("FONT FILE", description: "Font to parse.")
 
 let main = command(outputOption, fontArgument) { output, font in
+    let enumName = "\(font.fontName)Icon"
     let fontPath = font.path
-    let fontOutput = output + Path("FontAwesomeIcon.swift")
-    let catalogOutput = output + Path("FontAwesomeCatalog.html")
+    let fontOutput = output + Path("\(enumName).swift")
+    let catalogOutput = output + Path("\(enumName)Catalog.html")
     let catalogFontOutput = output + fontPath.lastComponent
 
     let fontParser = IconsFontFileParser()
@@ -37,9 +38,9 @@ let main = command(outputOption, fontArgument) { output, font in
     
     let context: [String: Any] = [
         "icons": fontParser.icons,
-        "enumName": "FontAwesomeIcon",
-        "fontName": "FontAwesome",
-        "fontPath": "/Users/josef/Developer/Git/Projects/Iconic/FontAwesome.otf"
+        "enumName": enumName,
+        "fontName": font.fontName,
+        "fontPath": catalogFontOutput.string
     ]
 
     let iconsEnum = try environment.renderTemplate(name: "iconic-default.stencil", context: context)
