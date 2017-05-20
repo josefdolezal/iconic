@@ -27,41 +27,30 @@ let outputOption = Option<Path>("output", "./", flag: "o", description: "The pat
 let fontArgument = Argument<IconFont>("FONT FILE", description: "Font to parse.")
 
 let main = command(outputOption, fontArgument) { output, font in
-    // Actual Icon enum name
-    let enumName = "\(font.fontName)Icon"
-    // Path of original font file
-    let fontPath = font.path
-    // Generated enum path
-    let fontOutput = output + Path("\(enumName).swift")
-    // Generated html catalog path
-    let catalogOutput = output + Path("\(enumName)Catalog.html")
-    // Path of font used in html catalog
-    let catalogFontOutput = output + fontPath.lastComponent
-    // Common swift files
-    let commonFilesOutput = output + Path("IconicCommon")
+    let paths = IconicPaths(outputPath: output, font: font)
 
     let fontParser = IconsFontFileParser()
-    let environment = Environment(iconicTemplatePaths: ["./templates"])
+    let environment = Environment(iconicTemplatePaths: [paths.templatesSource])
 
-    try fontParser.parseFile(atUrl: fontPath.url)
+    try fontParser.parseFile(atUrl: paths.fontPath.url)
     
     let context: [String: Any] = [
         "icons": fontParser.icons,
-        "enumName": enumName,
+        "enumName": paths.enumName,
         "fontName": font.fontName,
-        "fontPath": catalogFontOutput.string,
+        "fontPath": paths.catalogFontDestination.string,
         "familyName": fontParser.familyName ?? "unknown"
     ]
 
-    let iconsEnum = try environment.renderTemplate(name: "iconic-default.stencil", context: context)
-    let catalog = try environment.renderTemplate(name: "catalog.stencil", context: context)
+    let iconsEnum = try environment.renderTemplate(name: paths.iconsTemplate, context: context)
+    let catalog = try environment.renderTemplate(name: paths.catalogTemplate, context: context)
 
     // Create icons enum, html catalog and copy font file to output directory,
-    // if file already exists, it's overwritten
-    try fontOutput.clearBeforeAction { try $0.write(iconsEnum) }
-    try catalogOutput.clearBeforeAction { try $0.write(catalog) }
-    try catalogFontOutput.clearBeforeAction { try fontPath.copy($0) }
-    try commonFilesOutput.clearBeforeAction { try Path("templates/IconicCommon").copy($0) }
+    // if file or already exists, it's overwritten
+    try paths.iconsEnumDestination.clearBeforeAction { try $0.write(iconsEnum) }
+    try paths.catalogDestination.clearBeforeAction { try $0.write(catalog) }
+    try paths.catalogFontDestination.clearBeforeAction { try paths.fontPath.copyTo($0) }
+    try paths.commonFilesDestination.clearBeforeAction { try paths.commonFilesSource.copyTo($0) }
 }
 
 main.run()
