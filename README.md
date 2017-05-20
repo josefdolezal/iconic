@@ -41,8 +41,8 @@ I changed the whole repository structure and the generated code structure.
 
 New Iconic has two targets: `Iconic` and `IconicKit`.
 The first one takes care of the CLI interface and IO operations.
-The second one actually works works with fonts.
-This means that `IconicKit` may be used dependency with Carthage or CocoaPods.
+The second one actually works with fonts.
+This means that `IconicKit` may be used as dependency with Carthage or CocoaPods.
 
 ## Changes
 
