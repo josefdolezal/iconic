@@ -16,4 +16,8 @@ extension Path {
 
         try action(self)
     }
+
+    func copyTo(_ destination: PathKit.Path) throws {
+        try copy(destination)
+    }
 }
