@@ -1,4 +1,4 @@
-# Iconic CLI
+# Iconic CLI [![Build Status](https://travis-ci.com/josefdolezal/iconic.svg?token=AxpSW7yys3aiQpPG9zMW&branch=master)](https://travis-ci.com/josefdolezal/iconic)
 
 This repository is proof of concept for CLI support in [Iconic](https://github.com/dzenbot/Iconic) iOS framework.
 
