@@ -64,3 +64,14 @@ All breaking changes are easy to fix but not supported yet.
 Brew is still not supported (wait what?).
 Since I did the bottom-up rewrite, brew package is still not done.
 However, thanks to rewrite it should be pretty easy now.
+
+# Releases
+
+Releases may created with command:
+
+```bash
+make VERSION=x.y.z release
+```
+
+which will make `Iconic-x.y.z.zip` file.
+This file may be uploaded to GitHub releases.
