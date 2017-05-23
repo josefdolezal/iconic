@@ -1,0 +1,18 @@
+os: osx
+osx_image: xcode8.3
+branches:
+  only:
+  - master
+  - dev
+script:
+- scripts/travis-build.sh
+deploy:
+  provider: releases
+  api_key:
+    secure: ZkNlrjKSbzDCozoMgrX8jbtHig6h9Pu9ZzbYT5DjmqSf5SS7oT+uAKrkRTGYS8TKGydLPUc9LtyNX5VqHTObs4NJ3J+Rbj0XzFc2m/utlbblRKlIFR4rXAGU3Y/yNivCEhCmcUKue6fI6OLgDxS0wSjO17zowr/2uKiEQxiYxBiU0+pozVrwjBed0lH9p0GfHQOwiJ2CHnuOsujjbzRx/dRbO9ysr7xyNmG9YBnKczzKL1Yc4D4WeD6d4WWw1KB6JdqEeVR6gvzP1dhouYgIEjl66vyW6Kqrlbj765AlB+KGLbVwxaqYhCLlLqITORYhJLH6iiW6ocz9VVvUAiFxLPibVRtZUxJ2OzgszRYqlckyRB6PfE9QR4BQGKahDNN1gRYtSKrqvjAortM8bD9jKXQTNz/kflnTDZ59f8BkRFmoQPJG8qVynk+vWmLyWmKAqfI/R+qtZn0LgxYt5wEd/JoXeF67UU930EWW5KfxWpoHTqQ1RwSxxNyq5pv5yf555C632mjyMr09TCSLQ1mlHH35K88HAcQHM/Xj4bj7I06OP1sa1wi8EVw8qOaVluTAMmC5tm1gRYJhIqDxz2ec8ka+fJIG5/f+rBbzMaHtsN4eNGkfDwuU80QDbsqA+I0sLitJMhEG9QWnQqXsjImBUAw4G9LyBqqSGYEoaVv0Bi0=
+  file_glob: true
+  file: Iconic-*.zip
+  skip_cleanup: true
+  on:
+    repo: josefdolezal/iconic
+    tags: true
