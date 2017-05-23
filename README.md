@@ -1,4 +1,4 @@
-# Iconic CLI [![Build Status](https://travis-ci.com/josefdolezal/iconic.svg?token=AxpSW7yys3aiQpPG9zMW&branch=master)](https://travis-ci.com/josefdolezal/iconic)
+# Iconic CLI [![Build Status](https://travis-ci.org/josefdolezal/iconic.svg?branch=master)](https://travis-ci.org/josefdolezal/iconic)
 
 This repository is proof of concept for CLI support in [Iconic](https://github.com/dzenbot/Iconic) iOS framework.
 
@@ -75,4 +75,3 @@ make VERSION=x.y.z release
 
 which will make `Iconic-x.y.z.zip` file.
 This file may be uploaded to GitHub releases.
-
