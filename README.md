@@ -75,4 +75,3 @@ make VERSION=x.y.z release
 
 which will make `Iconic-x.y.z.zip` file.
 This file may be uploaded to GitHub releases.
-
