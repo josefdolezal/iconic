@@ -1,9 +1,5 @@
 os: osx
 osx_image: xcode8.3
-branches:
-  only:
-  - master
-  - dev
 script:
 - scripts/travis-build.sh
 deploy:
